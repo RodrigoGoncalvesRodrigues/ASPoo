@@ -31,9 +31,9 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<Categoria> createUser(@RequestBody Categoria categoria) {
+    public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(categoria.getCategoriaId()).toUri();
+                .buildAndExpand(categoria.getId()).toUri();
 
         return ResponseEntity.created(uri).body(this.categoriaService.createCategoria(categoria));
     }

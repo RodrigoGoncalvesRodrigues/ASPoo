@@ -29,7 +29,7 @@ public class ProdutoController {
         Produto produto = this.produtoService.createProduto(produtoRequest);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(produto.getProdutoId()).toUri();
+                .buildAndExpand(produto.getId()).toUri();
 
         return ResponseEntity.created(uri).body(produto);
     }

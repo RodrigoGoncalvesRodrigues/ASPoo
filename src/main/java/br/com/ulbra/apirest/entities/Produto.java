@@ -17,11 +17,11 @@ public class Produto {
     public Produto() {
     }
 
-    public Long getProdutoId() {
+    public Long getId() {
         return id;
     }
 
-    public void setProdutoId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

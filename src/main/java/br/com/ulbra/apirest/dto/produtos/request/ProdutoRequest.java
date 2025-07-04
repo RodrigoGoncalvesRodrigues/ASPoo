@@ -17,7 +17,7 @@ public class ProdutoRequest {
         return categoriaId;
     }
 
-    public void setCategoriaId(Long categoriaId) {
+    public void setId(Long Id) {
         this.categoriaId = categoriaId;
     }
 
