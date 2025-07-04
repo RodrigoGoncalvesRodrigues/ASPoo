@@ -4,16 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaResponseDTO {
+    private long id;
     private String nomeCategoria;
     private List<CategoriaProdutoDTO> produtos = new ArrayList<>();
 
-    public CategoriaResponseDTO(String nomeCategoria,List<CategoriaProdutoDTO> produtos) {
+    public CategoriaResponseDTO(Long id,String nomeCategoria,List<CategoriaProdutoDTO> produtos) {
+        this.id = id;
         this.nomeCategoria = nomeCategoria;
         this.produtos = produtos;
 
     }
 
     public List<CategoriaProdutoDTO> getProdutos() {return produtos;}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNomeCategoria() {
         return nomeCategoria;

@@ -24,6 +24,7 @@ public class CategoriaService {
     public Page<CategoriaResponseDTO> getCategorias(Pageable pageable) {
         return this.categoriaRepository.findAll(pageable)
                 .map(item -> new CategoriaResponseDTO(
+                        item.getId(),
                         item.getNomeCategoria(),
                         item.getProdutos().stream().map(
                                 produtos -> new CategoriaProdutoDTO(produtos.getNomeProduto(),produtos.getPrecoProduto())

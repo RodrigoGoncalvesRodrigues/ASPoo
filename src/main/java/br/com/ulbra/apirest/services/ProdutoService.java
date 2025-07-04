@@ -26,6 +26,7 @@ public class ProdutoService {
                 .stream()
                 .map(item ->
                         new ProdutoResponseDTO(
+                                item.getId(),
                                 item.getNomeProduto(),
                                 item.getPrecoProduto(),
                                 new ProdutoCategoriaDTO(item.getCategoria().getNomeCategoria())
@@ -43,4 +44,46 @@ public class ProdutoService {
 
         return produtoRepository.save(produto);
     }
+    public Produto updateProduto(Long id, ProdutoRequest request) {
+        // Buscar o produto pelo ID da URL
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow();
+
+        // Buscar a categoria informada no corpo da requisição
+        Categoria categoria = categoriaRepository.findById(request.getCategoriaId())
+                .orElseThrow();
+
+        // Verificar se o produto realmente pertence à lista da categoria
+        boolean pertence = categoria.getProdutos().stream()
+                .anyMatch(p -> p.getId().equals(id));
+
+        if (pertence) {
+            produto.setNomeProduto(request.getNomeProduto());
+            produto.setPrecoProduto(request.getPrecoProduto());
+            produto.setCategoria(categoria);
+            return produtoRepository.save(produto);
+        } else {
+            throw new RuntimeException("Produto não pertence à categoria informada.");
+        }
+    }
+    public void deleteProduto(Long id) {
+        // Buscar o produto
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow();
+
+        // Pegar a categoria associada
+        Categoria categoria = produto.getCategoria();
+
+        // Verificar se o produto faz parte da lista da categoria
+        boolean pertence = categoria.getProdutos().stream()
+                .anyMatch(p -> p.getId().equals(id));
+
+        if (pertence) {
+            produtoRepository.delete(produto);
+        } else {
+            throw new RuntimeException("Produto não pertence à categoria associada.");
+        }
+    }
+
+
 }

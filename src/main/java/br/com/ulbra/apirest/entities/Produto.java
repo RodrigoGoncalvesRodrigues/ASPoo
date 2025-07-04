@@ -1,5 +1,4 @@
 package br.com.ulbra.apirest.entities;
-
 import jakarta.persistence.*;
 
 @Entity
