@@ -40,5 +40,13 @@ public class CategoriaService {
         Categoria categoria = this.categoriaRepository.findById(id).orElseThrow();
         this.categoriaRepository.delete(categoria);
     }
+    public Categoria updateCategoria(Long id, Categoria categoriaAtualizada) {
+        Categoria categoriaExistente = categoriaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada."));
+
+        categoriaExistente.setNomeCategoria(categoriaAtualizada.getNomeCategoria());
+
+        return categoriaRepository.save(categoriaExistente);
+    }
 
 }

@@ -45,15 +45,12 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
     public Produto updateProduto(Long id, ProdutoRequest request) {
-        // Buscar o produto pelo ID da URL
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow();
 
-        // Buscar a categoria informada no corpo da requisição
         Categoria categoria = categoriaRepository.findById(request.getCategoriaId())
                 .orElseThrow();
 
-        // Verificar se o produto realmente pertence à lista da categoria
         boolean pertence = categoria.getProdutos().stream()
                 .anyMatch(p -> p.getId().equals(id));
 
@@ -67,14 +64,12 @@ public class ProdutoService {
         }
     }
     public void deleteProduto(Long id) {
-        // Buscar o produto
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow();
 
-        // Pegar a categoria associada
         Categoria categoria = produto.getCategoria();
 
-        // Verificar se o produto faz parte da lista da categoria
+
         boolean pertence = categoria.getProdutos().stream()
                 .anyMatch(p -> p.getId().equals(id));
 

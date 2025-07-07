@@ -43,4 +43,13 @@ public class CategoriaController {
         this.categoriaService.deleteCategoria(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Categoria> updateCategoria(
+            @PathVariable Long id,
+            @RequestBody Categoria categoriaAtualizada) {
+
+        Categoria categoria = categoriaService.updateCategoria(id, categoriaAtualizada);
+        return ResponseEntity.ok(categoria);
+    }
+
 }
