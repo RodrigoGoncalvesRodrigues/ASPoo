@@ -1,6 +1,7 @@
 package br.com.ulbra.apirest.controllers;
 
 import br.com.ulbra.apirest.dto.produtos.request.ProdutoRequest;
+import br.com.ulbra.apirest.dto.produtos.response.ProdutoCategoriaDTO;
 import br.com.ulbra.apirest.dto.produtos.response.ProdutoResponseDTO;
 import br.com.ulbra.apirest.entities.Produto;
 import br.com.ulbra.apirest.services.ProdutoService;
@@ -17,6 +18,19 @@ public class ProdutoController {
 
     public ProdutoController(ProdutoService produtoService) {
         this.produtoService = produtoService;
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoResponseDTO> getProdutoById(@PathVariable Long id) {
+        Produto produto = produtoService.getProdutoById(id);
+
+        ProdutoResponseDTO responseDTO = new ProdutoResponseDTO(
+                produto.getId(),
+                produto.getNomeProduto(),
+                produto.getPrecoProduto(),
+                new ProdutoCategoriaDTO(produto.getCategoria().getNomeCategoria())
+        );
+
+        return ResponseEntity.ok(responseDTO);
     }
 
     @GetMapping
