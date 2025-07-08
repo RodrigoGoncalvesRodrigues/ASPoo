@@ -17,7 +17,7 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
     }
 
-    public Categoria getCategoria(Long id) {
+    public Categoria getCategoriaById(Long id) {
         return this.categoriaRepository.findById(id).orElseThrow();
     }
 
@@ -28,7 +28,7 @@ public class CategoriaService {
                         item.getNomeCategoria(),
                         item.getProdutos().stream().map(
                                 produtos -> new CategoriaProdutoDTO(produtos.getNomeProduto(),produtos.getPrecoProduto())
-                                ).toList()
+                        ).toList()
                 ));
     }
 
@@ -39,6 +39,14 @@ public class CategoriaService {
     public void deleteCategoria(Long id) {
         Categoria categoria = this.categoriaRepository.findById(id).orElseThrow();
         this.categoriaRepository.delete(categoria);
+    }
+    public Categoria updateCategoria(Long id, Categoria categoriaAtualizada) {
+        Categoria categoriaExistente = categoriaRepository.findById(id)
+                .orElseThrow();
+
+        categoriaExistente.setNomeCategoria(categoriaAtualizada.getNomeCategoria());
+
+        return categoriaRepository.save(categoriaExistente);
     }
 
 }

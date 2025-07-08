@@ -8,7 +8,6 @@ public class Produto {
     private Long id;
     private String nomeProduto;
     private int precoProduto;
-
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
