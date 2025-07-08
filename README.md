@@ -1,34 +1,71 @@
-🧾 API de Produtos e Categorias
-Esta é uma API REST desenvolvida em Java + Spring Boot, com foco na gestão de produtos e suas respectivas categorias.
+# 📦 API de Produtos e Categorias
 
-📦 Entidades
-🗂️ Categoria
-Representa o agrupamento de produtos.
+Esta é uma **API REST** desenvolvida em **Java com Spring Boot** para gerenciar produtos e suas respectivas categorias.
 
-Campo	Tipo	Descrição
-id	Long	Identificador único da categoria
-nomeCategoria	String	Nome da categoria
-produtos	List<Produto>	Lista de produtos associados
+---
 
-🛒 Produto
-Representa um item que será vendido.
+## 🧩 Entidades
 
-Campo	Tipo	Descrição
-id	Long	Identificador único do produto
-nomeProduto	String	Nome do produto
-precoProduto	int	Preço do produto
-categoria	Categoria	Categoria à qual o produto pertence (@ManyToOne)
+### 📁 Categoria
 
-🌐 Endpoints Disponíveis
-📁 Categoria (/categorias)
-Método	Rota	Descrição
-GET	/	Retorna uma lista paginada de todas as categorias e seus produtos.
-GET	/{id}	Retorna uma categoria específica pelo seu ID.
-POST	/	Cria uma nova categoria. Requer nomeCategoria no corpo da requisição.
-PUT	/{id}	Atualiza os dados de uma categoria existente pelo ID.
-DELETE	/{id}	Remove uma categoria do sistema com base no ID.
+A entidade **Categoria** agrupa os produtos. Possui os seguintes campos:
 
-🧾 Observações
-A API retorna objetos do tipo DTO (Data Transfer Object) para evitar ciclos infinitos e garantir segurança nos dados expostos.
+- `id`: Identificador único da categoria (`Long`)
+- `nomeCategoria`: Nome da categoria (`String`)
+- `produtos`: Lista de produtos associados (`List<Produto>`)
 
-Todas as operações seguem os padrões REST, com retornos em JSON.
+---
+
+### 📦 Produto
+
+A entidade **Produto** representa os itens vendidos. Possui os seguintes campos:
+
+- `id`: Identificador único do produto (`Long`)
+- `nomeProduto`: Nome do produto (`String`)
+- `precoProduto`: Preço do produto (`int`)
+- `categoria`: Categoria à qual o produto pertence (`@ManyToOne` com `Categoria`)
+
+---
+
+## 🌐 Endpoints
+
+### 🔹 Categoria: `/categorias`
+
+| Método | Endpoint     | Descrição                                                                 |
+|--------|--------------|---------------------------------------------------------------------------|
+| GET    | `/`          | Retorna uma lista **paginada** de categorias e seus produtos              |
+| GET    | `/{id}`      | Retorna uma **categoria específica** pelo ID                              |
+| POST   | `/`          | Cria uma nova categoria (`nomeCategoria`)                                 |
+| PUT    | `/{id}`      | Atualiza uma categoria existente                                           |
+| DELETE | `/{id}`      | Exclui uma categoria pelo ID                                               |
+
+---
+
+### 🔹 Produto: `/produtos`
+
+| Método | Endpoint     | Descrição                                                                 |
+|--------|--------------|---------------------------------------------------------------------------|
+| GET    | `/`          | Retorna todos os produtos com suas respectivas categorias (`DTO`)         |
+| GET    | `/{id}`      | Retorna um produto específico pelo ID                                     |
+| POST   | `/`          | Cria um novo produto (`nomeProduto`, `precoProduto`, `categoriaId`)       |
+| PUT    | `/{id}`      | Atualiza um produto existente                                             |
+| DELETE | `/{id}`      | Exclui um produto pelo ID                                                 |
+
+---
+
+## 🚀 Tecnologias utilizadas
+
+- Java 21
+- Spring Boot
+- Spring Data JPA
+- PostgreSQL (Aurora)
+- Maven ou Gradle
+- RESTful API
+- AWS (EC2, Aurora)
+- pgAdmin
+
+---
+
+## ✅ Status
+
+Projeto em desenvolvimento 🚧
