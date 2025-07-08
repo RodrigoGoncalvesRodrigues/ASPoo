@@ -63,9 +63,3 @@ A entidade **Produto** representa os itens vendidos. Possui os seguintes campos:
 - RESTful API
 - AWS (EC2, Aurora)
 - pgAdmin
-
----
-
-## ✅ Status
-
-Projeto em desenvolvimento 🚧
