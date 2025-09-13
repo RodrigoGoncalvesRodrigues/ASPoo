@@ -59,7 +59,7 @@ A entidade **Produto** representa os itens vendidos. Possui os seguintes campos:
 - Spring Boot
 - Spring Data JPA
 - PostgreSQL (Aurora)
-- Maven ou Gradle
+- Gradle
 - RESTful API
 - AWS (EC2, Aurora)
 - pgAdmin
